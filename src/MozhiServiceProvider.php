@@ -3,6 +3,7 @@
 namespace Aheenam\Mozhi;
 
 use Illuminate\Support\ServiceProvider;
+use League\CommonMark\CommonMarkConverter;
 
 class MozhiServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,16 @@ class MozhiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
+        // publish config files
+        $this->publishes([
+            __DIR__.'/../config/mozhi.php' => config_path('mozhi.php'),
+        ]);
+
+        // set the themes views
+        $this->loadViewsFrom(config('theme_path'), 'theme');
+
+        // load the routes
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
     }
 
 
@@ -31,5 +41,6 @@ class MozhiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/mozhi.php', 'mozhi');
     }
 }
