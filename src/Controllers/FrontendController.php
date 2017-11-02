@@ -13,7 +13,7 @@ class FrontendController extends Controller
      * @param $slug
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
-    public function show($slug)
+    public function show($slug = 'index')
     {
         $page = (new RouteResolver)->getPageByRoute($slug);
 

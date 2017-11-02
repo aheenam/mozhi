@@ -23,4 +23,13 @@ class FrontControllerTest extends TestCase
             ->assertStatus(404);
     }
 
+    /** @test */
+    public function it_looks_for_a_index_page_if_slug_is_empty()
+    {
+        $response = $this->get('/')
+            ->assertStatus(200);
+
+        $this->assertMatchesSnapshot($response->getContent());
+    }
+
 }
