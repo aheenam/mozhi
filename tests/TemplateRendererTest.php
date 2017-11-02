@@ -1,6 +1,7 @@
 <?php
 namespace Aheenam\Mozhi\Test;
 
+use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -36,6 +37,16 @@ class TemplateRendererTest extends TestCase
         $template = (new TemplateRenderer($page))->getTemplate();
 
         $this->assertEquals('page', $template);
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_view_does_not_exists()
+    {
+        $this->expectException(TemplateNotFoundException::class);
+
+        $page = (new RouteResolver)->getPageByRoute('/no-view');
+
+        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
 
     /** @test */
