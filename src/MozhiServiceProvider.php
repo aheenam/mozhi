@@ -3,7 +3,6 @@
 namespace Aheenam\Mozhi;
 
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\CommonMarkConverter;
 
 class MozhiServiceProvider extends ServiceProvider
 {
@@ -27,7 +26,7 @@ class MozhiServiceProvider extends ServiceProvider
         ]);
 
         // set the themes views
-        $this->loadViewsFrom(config('theme_path'), 'theme');
+        $this->loadViewsFrom(base_path($this->app['config']['mozhi.theme_path']), 'theme');
 
         // load the routes
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
