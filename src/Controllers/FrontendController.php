@@ -4,6 +4,7 @@ namespace Aheenam\Mozhi\Controllers;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Illuminate\Routing\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FrontendController extends Controller
 {
@@ -15,6 +16,8 @@ class FrontendController extends Controller
     public function show($slug)
     {
         $page = (new RouteResolver)->getPageByRoute($slug);
+
+        if ($page === null) throw new NotFoundHttpException();
 
         $view = (new TemplateRenderer($page))->render([]);
 

@@ -15,4 +15,12 @@ class FrontControllerTest extends TestCase
 
         $this->assertMatchesSnapshot($response->getContent());
     }
+
+    /** @test */
+    public function it_returns_a_404_if_route_not_found()
+    {
+        $this->get('/not-found')
+            ->assertStatus(404);
+    }
+
 }
