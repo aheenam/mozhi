@@ -31,7 +31,10 @@
     "laravel": {
       "providers": [
         "Aheenam\\Mozhi\\MozhiServiceProvider"
-      ]
+      ],
+      "aliases": {
+          "Mozhi": "Aheenam\\Mozhi\\Facades\\Mozhi"
+      }
     }
   },
   "scripts": {

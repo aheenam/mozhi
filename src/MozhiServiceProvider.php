@@ -27,9 +27,6 @@ class MozhiServiceProvider extends ServiceProvider
 
         // set the themes views
         $this->loadViewsFrom(base_path($this->app['config']['mozhi.theme_path']), 'theme');
-
-        // load the routes
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
     }
 
 
