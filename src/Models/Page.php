@@ -51,7 +51,7 @@ class Page
         if ($key === null) {
             return $this->meta;
         }
-        if (!isset($this->meta[$key])) {
+        if (! isset($this->meta[$key])) {
             return;
         }
 
