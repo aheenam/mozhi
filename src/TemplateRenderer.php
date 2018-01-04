@@ -2,8 +2,8 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 use Aheenam\Mozhi\Models\Page;
+use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRenderer
 {
@@ -46,9 +46,10 @@ class TemplateRenderer
         $currentTheme = self::getCurrentTheme();
         $template = $this->getTemplate();
 
-        if (!view()->exists("theme::$currentTheme.$template")) {
+        if (! view()->exists("theme::$currentTheme.$template")) {
             throw new TemplateNotFoundException("Template [$template] was not found in theme [$currentTheme]");
         }
+
         return view("theme::$currentTheme.$template", collect([
             'meta'    => $this->page->meta(),
             'content' => $this->page->getParsedContent(),

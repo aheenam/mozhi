@@ -3,8 +3,8 @@
 namespace Aheenam\Mozhi\Controllers;
 
 use Aheenam\Mozhi\RouteResolver;
-use Aheenam\Mozhi\TemplateRenderer;
 use Illuminate\Routing\Controller;
+use Aheenam\Mozhi\TemplateRenderer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FrontendController extends Controller

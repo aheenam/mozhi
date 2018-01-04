@@ -2,8 +2,8 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\Models\Page;
 use Storage;
+use Aheenam\Mozhi\Models\Page;
 
 class RouteResolver
 {
@@ -17,7 +17,7 @@ class RouteResolver
         $contentStorage = Storage::disk(config('mozhi.content_disk'));
         $filePath = 'contents/'.$route.'.md';
 
-        if ($route === null || !$contentStorage->exists($filePath)) {
+        if ($route === null || ! $contentStorage->exists($filePath)) {
             return;
         }
 

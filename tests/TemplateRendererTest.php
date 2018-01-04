@@ -2,10 +2,10 @@
 
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
+use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase
 {
