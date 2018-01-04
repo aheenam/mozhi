@@ -29,9 +29,8 @@ class MozhiServiceProvider extends ServiceProvider
         $this->loadViewsFrom(base_path($this->app['config']['mozhi.theme_path']), 'theme');
 
         // load the routes
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
     }
-
 
     /**
      * Register the service provider.
@@ -40,6 +39,6 @@ class MozhiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/mozhi.php', 'mozhi');
+        $this->mergeConfigFrom(__DIR__.'/../config/mozhi.php', 'mozhi');
     }
 }

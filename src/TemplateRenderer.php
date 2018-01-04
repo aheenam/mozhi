@@ -1,6 +1,6 @@
 <?php
-namespace Aheenam\Mozhi;
 
+namespace Aheenam\Mozhi;
 
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 use Aheenam\Mozhi\Models\Page;
@@ -8,7 +8,7 @@ use Aheenam\Mozhi\Models\Page;
 class TemplateRenderer
 {
     /**
-     * the page that the TemplateRenderer should render
+     * the page that the TemplateRenderer should render.
      *
      * @var Page
      */
@@ -16,7 +16,7 @@ class TemplateRenderer
 
     /**
      * The name of the template file that should
-     * be used for the page
+     * be used for the page.
      *
      * @var string
      */
@@ -24,6 +24,7 @@ class TemplateRenderer
 
     /**
      * TemplateRenderer constructor.
+     *
      * @param Page $page
      */
     public function __construct(Page $page)
@@ -32,23 +33,25 @@ class TemplateRenderer
     }
 
     /**
-     * returns a rendered string
+     * returns a rendered string.
      *
      * @param array $data
-     * @return string
+     *
      * @throws TemplateNotFoundException
+     *
+     * @return string
      */
     public function render($data = [])
     {
         $currentTheme = self::getCurrentTheme();
         $template = $this->getTemplate();
 
-        if ( !view()->exists("theme::$currentTheme.$template") )
+        if (!view()->exists("theme::$currentTheme.$template")) {
             throw new TemplateNotFoundException("Template [$template] was not found in theme [$currentTheme]");
-
+        }
         return view("theme::$currentTheme.$template", collect([
-            'meta' => $this->page->meta(),
-            'content' => $this->page->getParsedContent()
+            'meta'    => $this->page->meta(),
+            'content' => $this->page->getParsedContent(),
         ])->concat(collect($data)))->render();
     }
 
@@ -57,7 +60,9 @@ class TemplateRenderer
      */
     public function getTemplate()
     {
-        if ( $this->template === null ) $this->template = $this->resolveTemplate();
+        if ($this->template === null) {
+            $this->template = $this->resolveTemplate();
+        }
 
         return $this->template;
     }
@@ -72,14 +77,16 @@ class TemplateRenderer
 
     /**
      * returns the template of the page
-     * defaults to default_template of config if none set
+     * defaults to default_template of config if none set.
      *
      * @return array|\Illuminate\Config\Repository|mixed|null
      */
     protected function resolveTemplate()
     {
-        if ($this->page->meta('template') === null) return config('mozhi.default_template');
+        if ($this->page->meta('template') === null) {
+            return config('mozhi.default_template');
+        }
+
         return $this->page->meta('template');
     }
-
 }

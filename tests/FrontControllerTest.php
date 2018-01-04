@@ -1,4 +1,5 @@
 <?php
+
 namespace Aheenam\Mozhi\Test;
 
 use Spatie\Snapshots\MatchesSnapshots;
@@ -31,5 +32,4 @@ class FrontControllerTest extends TestCase
 
         $this->assertMatchesSnapshot($response->getContent());
     }
-
 }

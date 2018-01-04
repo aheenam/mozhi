@@ -1,6 +1,6 @@
 <?php
-namespace Aheenam\Mozhi\Models;
 
+namespace Aheenam\Mozhi\Models;
 
 use League\CommonMark\CommonMarkConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -8,21 +8,21 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 class Page
 {
     /**
-     * the meta data of the page
+     * the meta data of the page.
      *
      * @var array
      */
     protected $meta;
 
     /**
-     * the markdown content of the page
+     * the markdown content of the page.
      *
      * @var string
      */
     protected $content;
 
     /**
-     * The markdown parser
+     * The markdown parser.
      *
      * @var CommonMarkConverter
      */
@@ -38,17 +38,23 @@ class Page
         $object = YamlFrontMatter::parse($content);
         $this->meta = $object->matter();
         $this->content = $object->body();
-        $this->converter = new CommonMarkConverter;
+        $this->converter = new CommonMarkConverter();
     }
 
     /**
      * @param null $key
+     *
      * @return array|mixed|null
      */
     public function meta($key = null)
     {
-        if ($key === null) return $this->meta;
-        if (!isset($this->meta[$key])) return null;
+        if ($key === null) {
+            return $this->meta;
+        }
+        if (!isset($this->meta[$key])) {
+            return;
+        }
+
         return $this->meta[$key];
     }
 
@@ -61,7 +67,7 @@ class Page
     }
 
     /**
-     * parses markdown before returning the content
+     * parses markdown before returning the content.
      *
      * @return string
      */
@@ -69,5 +75,4 @@ class Page
     {
         return $this->converter->convertToHtml($this->content);
     }
-
 }
