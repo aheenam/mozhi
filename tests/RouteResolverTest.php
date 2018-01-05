@@ -4,7 +4,6 @@ namespace Aheenam\Mozhi\Test;
 
 use Aheenam\Mozhi\Models\Page;
 use Aheenam\Mozhi\RouteResolver;
-use Mozhi;
 
 class RouteResolverTest extends TestCase
 {
@@ -26,7 +25,7 @@ class RouteResolverTest extends TestCase
     }
 
     /** @test */
-    public function it_resolves_routes_only_where_it_was_defined ()
+    public function it_resolves_routes_only_where_it_was_defined()
     {
         $this->app['router']->group(['prefix' => 'test-prefix'], function () {
             \Mozhi::routes();
@@ -34,7 +33,5 @@ class RouteResolverTest extends TestCase
 
         $this->get('/test-prefix')->assertStatus(200);
         $this->get('/')->assertStatus(404);
-
     }
-
 }

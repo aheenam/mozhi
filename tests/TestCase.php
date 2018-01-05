@@ -28,12 +28,12 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * add the package facades
+     * add the package facades.
      */
     protected function getPackageAliases($app)
     {
         return [
-            'Mozhi' => \Aheenam\Mozhi\Facades\Mozhi::class
+            'Mozhi' => \Aheenam\Mozhi\Facades\Mozhi::class,
         ];
     }
 

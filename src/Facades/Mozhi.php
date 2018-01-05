@@ -1,4 +1,5 @@
 <?php
+
 namespace Aheenam\Mozhi\Facades;
 
 use Illuminate\Support\Facades\Facade;
@@ -16,11 +17,11 @@ class Mozhi extends Facade
     }
 
     /**
-     * include the routes for mozhi
+     * include the routes for mozhi.
      */
-    public static function routes ()
+    public static function routes()
     {
-        require __DIR__ . '/../routes/web.php';
+        require __DIR__.'/../routes/web.php';
     }
 
 }
