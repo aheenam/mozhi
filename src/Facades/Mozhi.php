@@ -23,5 +23,4 @@ class Mozhi extends Facade
     {
         require __DIR__.'/../routes/web.php';
     }
-
 }
