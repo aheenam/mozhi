@@ -11,6 +11,8 @@ class FrontControllerTest extends TestCase
     /** @test */
     public function it_renders_correct_view_on_route()
     {
+        \Mozhi::routes();
+
         $response = $this->get('/no-template')
             ->assertStatus(200);
 
@@ -27,6 +29,7 @@ class FrontControllerTest extends TestCase
     /** @test */
     public function it_looks_for_a_index_page_if_slug_is_empty()
     {
+        \Mozhi::routes();
         $response = $this->get('/')
             ->assertStatus(200);
 

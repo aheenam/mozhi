@@ -23,4 +23,15 @@ class RouteResolverTest extends TestCase
 
         $this->assertNull($page);
     }
+
+    /** @test */
+    public function it_resolves_routes_only_where_it_was_defined()
+    {
+        $this->app['router']->group(['prefix' => 'test-prefix'], function () {
+            \Mozhi::routes();
+        });
+
+        $this->get('/test-prefix')->assertStatus(200);
+        $this->get('/')->assertStatus(404);
+    }
 }

@@ -28,6 +28,16 @@ abstract class TestCase extends Orchestra
     }
 
     /**
+     * add the package facades.
+     */
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Mozhi' => \Aheenam\Mozhi\Facades\Mozhi::class,
+        ];
+    }
+
+    /**
      * Define environment setup.
      *
      * @param \Illuminate\Foundation\Application $app
@@ -42,9 +52,9 @@ abstract class TestCase extends Orchestra
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
 
         $app['config']->set('mozhi.content_disk', 'content');
