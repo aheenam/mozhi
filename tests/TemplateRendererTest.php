@@ -1,18 +1,18 @@
 <?php
+
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
+use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase
 {
-
     use MatchesSnapshots;
 
     /** @test */
-    public function it_returns_current_theme ()
+    public function it_returns_current_theme()
     {
         $theme = TemplateRenderer::getCurrentTheme();
 
@@ -20,9 +20,9 @@ class TemplateRendererTest extends TestCase
     }
 
     /** @test */
-    public function it_uses_the_correct_template_of_a_page ()
+    public function it_uses_the_correct_template_of_a_page()
     {
-        $page = (new RouteResolver)->getPageByRoute('/blog/awesome-blog');
+        $page = (new RouteResolver())->getPageByRoute('/blog/awesome-blog');
 
         $template = (new TemplateRenderer($page))->getTemplate();
 
@@ -30,9 +30,9 @@ class TemplateRendererTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_default_if_no_template_is_defined ()
+    public function it_returns_default_if_no_template_is_defined()
     {
-        $page = (new RouteResolver)->getPageByRoute('/no-template');
+        $page = (new RouteResolver())->getPageByRoute('/no-template');
 
         $template = (new TemplateRenderer($page))->getTemplate();
 
@@ -44,17 +44,16 @@ class TemplateRendererTest extends TestCase
     {
         $this->expectException(TemplateNotFoundException::class);
 
-        $page = (new RouteResolver)->getPageByRoute('/no-view');
+        $page = (new RouteResolver())->getPageByRoute('/no-view');
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
 
     /** @test */
-    public function it_renders_a_page_view ()
+    public function it_renders_a_page_view()
     {
-        $page = (new RouteResolver)->getPageByRoute('/no-template');
+        $page = (new RouteResolver())->getPageByRoute('/no-template');
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
-
 }

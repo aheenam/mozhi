@@ -3,12 +3,10 @@
 namespace Aheenam\Mozhi\Test;
 
 use Aheenam\Mozhi\MozhiServiceProvider;
-use Illuminate\Foundation\Exceptions\Handler;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-
     /**
      * Setup the test environment.
      */
@@ -18,9 +16,10 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * add the package provider
+     * add the package provider.
      *
      * @param $app
+     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -41,13 +40,14 @@ abstract class TestCase extends Orchestra
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
     {
         // override the template path
-        $app['view']->addNamespace('theme', __DIR__ . '/tmp/themes/');
+        $app['view']->addNamespace('theme', __DIR__.'/tmp/themes/');
 
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testing');
@@ -60,7 +60,7 @@ abstract class TestCase extends Orchestra
         $app['config']->set('mozhi.content_disk', 'content');
         $app['config']->set('filesystems.disks.content', [
             'driver' => 'local',
-            'root' => __DIR__ . '/tmp/'
+            'root'   => __DIR__.'/tmp/',
         ]);
     }
 }
