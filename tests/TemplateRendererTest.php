@@ -56,4 +56,12 @@ class TemplateRendererTest extends TestCase
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
+
+    /** @test */
+    public function it_renders_a_view_with_a_table()
+    {
+        $page = (new RouteResolver())->getPageByRoute('/table');
+
+        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+    }
 }
