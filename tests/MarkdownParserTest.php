@@ -20,7 +20,7 @@ class MarkdownParserTest extends TestCase
     public function it_can_add_extensions_from_config()
     {
         Config::set('markdown_extensions', [
-            new TableExtension()
+            new TableExtension(),
         ]);
         $parser = new MarkdownParser;
 

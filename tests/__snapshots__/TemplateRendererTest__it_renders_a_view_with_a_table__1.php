@@ -1,4 +1,6 @@
-<?php return '<html>
+<?php
+
+return '<html>
     <head>
         <title>table</title>
     </head>

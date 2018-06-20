@@ -2,13 +2,12 @@
 
 namespace Aheenam\Mozhi;
 
-use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\ExtensionInterface;
 
 class MarkdownParser
 {
-
     /**
      * @var Environment
      */

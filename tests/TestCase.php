@@ -64,7 +64,7 @@ abstract class TestCase extends Orchestra
         ]);
 
         $app['config']->set('mozhi.markdown_extensions', [
-            new \Webuni\CommonMark\TableExtension\TableExtension()
+            new \Webuni\CommonMark\TableExtension\TableExtension(),
         ]);
     }
 }
