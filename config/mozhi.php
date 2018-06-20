@@ -29,6 +29,9 @@ return [
      */
     'default_template' => env('MOZHI_DEFAULT_TEMPLATE', 'page'),
 
+    /**
+     * Add all the CommonMark extension you want to use
+     */
     'markdown_extensions' => [
         new \Webuni\CommonMark\TableExtension\TableExtension()
     ]
