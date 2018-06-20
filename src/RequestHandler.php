@@ -1,6 +1,6 @@
 <?php
 
-namespace Aheenam\Mozhi\Controllers;
+namespace Aheenam\Mozhi;
 
 use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Routing\Controller;
