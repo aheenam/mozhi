@@ -1,6 +1,6 @@
 <?php
 
 Route::any('{slug?}')
-    ->uses(\Aheenam\Mozhi\Controllers\FrontendController::class.'@show')
+    ->uses(\Aheenam\Mozhi\Controllers\RequestHandler::class)
     ->name('mozhi.page')
     ->where('slug', '.*');
