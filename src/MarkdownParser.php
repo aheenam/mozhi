@@ -25,7 +25,7 @@ class MarkdownParser
 
         $config = [];
 
-        $extensions = collect(config('markdown_extensions', []));
+        $extensions = collect(config('mozhi.markdown_extensions', []));
 
         $extensions->each(function ($extension) {
             $this->environment->addExtension($extension);
