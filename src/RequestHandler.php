@@ -2,9 +2,7 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Routing\Controller;
-use Aheenam\Mozhi\TemplateRenderer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RequestHandler extends Controller
