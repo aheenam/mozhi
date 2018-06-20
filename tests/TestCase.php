@@ -62,5 +62,9 @@ abstract class TestCase extends Orchestra
             'driver' => 'local',
             'root'   => __DIR__.'/tmp/',
         ]);
+
+        $app['config']->set('mozhi.markdown_extensions', [
+            new \Webuni\CommonMark\TableExtension\TableExtension(),
+        ]);
     }
 }

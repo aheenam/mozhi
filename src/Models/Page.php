@@ -2,7 +2,7 @@
 
 namespace Aheenam\Mozhi\Models;
 
-use League\CommonMark\CommonMarkConverter;
+use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class Page
@@ -24,9 +24,9 @@ class Page
     /**
      * The markdown parser.
      *
-     * @var CommonMarkConverter
+     * @var MarkdownParser
      */
-    protected $converter;
+    protected $markdownParser;
 
     /**
      * Page constructor.
@@ -38,7 +38,7 @@ class Page
         $object = YamlFrontMatter::parse($content);
         $this->meta = $object->matter();
         $this->content = $object->body();
-        $this->converter = new CommonMarkConverter();
+        $this->markdownParser = new MarkdownParser();
     }
 
     /**
@@ -73,6 +73,6 @@ class Page
      */
     public function getParsedContent()
     {
-        return $this->converter->convertToHtml($this->content);
+        return $this->markdownParser->parse($this->content);
     }
 }

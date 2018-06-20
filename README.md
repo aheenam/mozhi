@@ -62,6 +62,13 @@ return [
      */
     'default_template' => env('MOZHI_DEFAULT_TEMPLATE', 'page'),
 
+    /**
+     * Add all the CommonMark extension you want to use
+     */
+    'markdown_extensions' => [
+        new \Webuni\CommonMark\TableExtension\TableExtension()
+    ]
+
 ];
 ```
 
@@ -87,6 +94,10 @@ The MarkDown files are parsed using Spatie's awesome package called [YAML Front 
 So in your template file you can use the `$content` and the `$meta` variables. First is the html of the content file and `$meta` is an array of all header data specified in the Markdown file.
 
 > Note: If no template was specified it will fallback to the `default_theme` specified in the config.
+
+### Parsing Markdown
+
+Mozhi uses the CommonMark implementation of [The PHP League](https://github.com/thephpleague/commonmark) to parse Markdown to HTML. They offer a way to extend the specification. Mozhi uses the Table Extension by default, but you can manage all the extension by changing the `markdown_extensions` array in the config.
 
 Changelog
 ---
