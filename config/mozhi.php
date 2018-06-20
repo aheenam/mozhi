@@ -29,4 +29,8 @@ return [
      */
     'default_template' => env('MOZHI_DEFAULT_TEMPLATE', 'page'),
 
+    'markdown_extensions' => [
+        new \Webuni\CommonMark\TableExtension\TableExtension()
+    ]
+
 ];
