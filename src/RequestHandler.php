@@ -1,20 +1,18 @@
 <?php
 
-namespace Aheenam\Mozhi\Controllers;
+namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Routing\Controller;
-use Aheenam\Mozhi\TemplateRenderer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class FrontendController extends Controller
+class RequestHandler extends Controller
 {
     /**
      * @param $slug
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
-    public function show($slug = 'index')
+    public function __invoke($slug = 'index')
     {
         $page = (new RouteResolver())->getPageByRoute($slug);
 
