@@ -27,16 +27,12 @@ class MarkdownDocument implements Document
      */
     private $templateName;
 
-    /**
-     * Page constructor.
-     *
-     * @param $content
-     */
     public function __construct(string $content, array $metaData, string $templateName)
     {
         $this->content = $content;
         $this->metaData = $metaData;
         $this->templateName = $templateName;
+        $this->markdownParser = new MarkdownParser();
     }
 
     public static function fromContent(string $content): self
@@ -45,24 +41,6 @@ class MarkdownDocument implements Document
         $templateName = $content->matter('template', config('mozhi.default_template'));
 
         return new self($content->body(), $content->matter(), $templateName);
-    }
-
-    /**
-     * @param null $key
-     *
-     * @return array|mixed|null
-     */
-    public function meta(string $key = null)
-    {
-        if ($key === null) {
-            return $this->metaData;
-        }
-
-        if (! isset($this->metaData[$key])) {
-            return null;
-        }
-
-        return $this->metaData[$key];
     }
 
     public function getRawContent(): string
