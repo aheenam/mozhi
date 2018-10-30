@@ -5,6 +5,7 @@ namespace Aheenam\Mozhi\Test;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
+use Illuminate\Support\Facades\Storage;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase
@@ -22,7 +23,8 @@ class TemplateRendererTest extends TestCase
     /** @test */
     public function it_uses_the_correct_template_of_a_page()
     {
-        $page = (new RouteResolver())->getPageByRoute('/blog/awesome-blog');
+        $page = (new RouteResolver(Storage::disk('content')))
+            ->getPageByRoute('/blog/awesome-blog');
 
         $template = (new TemplateRenderer($page))->getTemplate();
 
@@ -32,7 +34,8 @@ class TemplateRendererTest extends TestCase
     /** @test */
     public function it_returns_default_if_no_template_is_defined()
     {
-        $page = (new RouteResolver())->getPageByRoute('/no-template');
+        $page = (new RouteResolver(Storage::disk('content')))
+            ->getPageByRoute('/no-template');
 
         $template = (new TemplateRenderer($page))->getTemplate();
 
@@ -44,7 +47,8 @@ class TemplateRendererTest extends TestCase
     {
         $this->expectException(TemplateNotFoundException::class);
 
-        $page = (new RouteResolver())->getPageByRoute('/no-view');
+        $page = (new RouteResolver(Storage::disk('content')))
+            ->getPageByRoute('/no-view');
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
@@ -52,7 +56,8 @@ class TemplateRendererTest extends TestCase
     /** @test */
     public function it_renders_a_page_view()
     {
-        $page = (new RouteResolver())->getPageByRoute('/no-template');
+        $page = (new RouteResolver(Storage::disk('content')))
+            ->getPageByRoute('/no-template');
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }
@@ -60,7 +65,8 @@ class TemplateRendererTest extends TestCase
     /** @test */
     public function it_renders_a_view_with_a_table()
     {
-        $page = (new RouteResolver())->getPageByRoute('/table');
+        $page = (new RouteResolver(Storage::disk('content')))
+            ->getPageByRoute('/table');
 
         $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
     }

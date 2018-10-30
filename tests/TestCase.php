@@ -2,6 +2,7 @@
 
 namespace Aheenam\Mozhi\Test;
 
+use Aheenam\Mozhi\Facades\Mozhi;
 use Aheenam\Mozhi\MozhiServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -33,7 +34,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'Mozhi' => \Aheenam\Mozhi\Facades\Mozhi::class,
+            'Mozhi' => Mozhi::class,
         ];
     }
 

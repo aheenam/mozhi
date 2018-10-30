@@ -2,24 +2,26 @@
 
 namespace Aheenam\Mozhi;
 
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RequestHandler extends Controller
 {
-    /**
-     * @param $slug
-     *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-     */
-    public function __invoke($slug = 'index')
+    public function __invoke(string $slug = '/'): Response
     {
-        $page = (new RouteResolver())->getPageByRoute($slug);
+        $contentStorage = Storage::disk(config('mozhi.content_disk'));
+        $page = (new RouteResolver($contentStorage))->getPageByRoute($slug);
 
         if ($page === null) {
             throw new NotFoundHttpException();
         }
-        $view = (new TemplateRenderer($page))->render([]);
+        try {
+            $view = (new TemplateRenderer($page))->render([]);
+        } catch (Exceptions\TemplateNotFoundException $e) {
+            throw new NotFoundHttpException();
+        }
 
         return response($view, 200);
     }
