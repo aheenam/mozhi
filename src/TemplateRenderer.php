@@ -51,12 +51,4 @@ class TemplateRenderer
                 "Template [{$this->page->getTemplateName()}] was not found in theme [$this->themeName]");
         }
     }
-
-    /**
-     * @return \Illuminate\Config\Repository|mixed
-     */
-    public static function getCurrentTheme()
-    {
-        return ;
-    }
 }
