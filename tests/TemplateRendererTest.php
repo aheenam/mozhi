@@ -2,6 +2,7 @@
 
 namespace Aheenam\Mozhi\Test;
 
+use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
@@ -17,27 +18,32 @@ class TemplateRendererTest extends TestCase
     {
         $this->expectException(TemplateNotFoundException::class);
 
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/no-view');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__ . '/tmp/contents/no-view/no-view.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
+        $rendered = (new TemplateRenderer($document, 'default'))->render();
+
+        $this->assertMatchesSnapshot($rendered);
     }
 
     /** @test */
     public function it_renders_a_page_view()
     {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/no-template');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__ . '/tmp/contents/no-template/no-template.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($document, 'default'))->render());
     }
 
     /** @test */
     public function it_renders_a_view_with_a_table()
     {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/table');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__ . '/tmp/contents/table/table.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($document, 'default'))->render());
     }
 }
