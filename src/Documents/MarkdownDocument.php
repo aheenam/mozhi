@@ -48,11 +48,6 @@ class MarkdownDocument implements Document
         return $this->content;
     }
 
-    /**
-     * parses markdown before returning the content.
-     *
-     * @return string
-     */
     public function getHtmlContent(): string
     {
         return $this->markdownParser->parse($this->content);
