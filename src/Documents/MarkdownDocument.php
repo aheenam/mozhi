@@ -5,18 +5,9 @@ namespace Aheenam\Mozhi\Documents;
 use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-class MarkdownDocument
+class MarkdownDocument implements Document
 {
     /**
-     * the meta data of the page.
-     *
-     * @var array
-     */
-    protected $meta;
-
-    /**
-     * the markdown content of the page.
-     *
      * @var string
      */
     protected $content;
@@ -27,18 +18,33 @@ class MarkdownDocument
      * @var MarkdownParser
      */
     protected $markdownParser;
+    /**
+     * @var array
+     */
+    private $metaData;
+    /**
+     * @var string
+     */
+    private $templateName;
 
     /**
      * Page constructor.
      *
      * @param $content
      */
-    public function __construct($content)
+    public function __construct(string $content, array $metaData, string $templateName)
     {
-        $object = YamlFrontMatter::parse($content);
-        $this->meta = $object->matter();
-        $this->content = $object->body();
-        $this->markdownParser = new MarkdownParser();
+        $this->content = $content;
+        $this->metaData = $metaData;
+        $this->templateName = $templateName;
+    }
+
+    public static function fromContent(string $content): self
+    {
+        $content = YamlFrontMatter::parse($content);
+        $templateName = $content->matter('template', config('mozhi.default_template'));
+
+        return new self($content->body(), $content->matter(), $templateName);
     }
 
     /**
@@ -46,22 +52,20 @@ class MarkdownDocument
      *
      * @return array|mixed|null
      */
-    public function meta($key = null)
+    public function meta(string $key = null)
     {
         if ($key === null) {
-            return $this->meta;
-        }
-        if (! isset($this->meta[$key])) {
-            return;
+            return $this->metaData;
         }
 
-        return $this->meta[$key];
+        if (! isset($this->metaData[$key])) {
+            return null;
+        }
+
+        return $this->metaData[$key];
     }
 
-    /**
-     * @return string
-     */
-    public function getContent()
+    public function getRawContent(): string
     {
         return $this->content;
     }
@@ -71,8 +75,18 @@ class MarkdownDocument
      *
      * @return string
      */
-    public function getParsedContent()
+    public function getHtmlContent(): string
     {
         return $this->markdownParser->parse($this->content);
+    }
+
+    public function getMetaData(): array
+    {
+        return $this->metaData;
+    }
+
+    public function getTemplateName(): string
+    {
+        return $this->templateName;
     }
 }
