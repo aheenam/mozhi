@@ -19,4 +19,13 @@ class MarkdownDocumentTest extends TestCase
         $this->assertEquals(['title' => 'Index'], $document->getMetaData());
         $this->assertEquals('default', $document->getTemplateName());
     }
+
+    /** @test */
+    public function it_uses_the_correct_template_name()
+    {
+        $content = file_get_contents(__DIR__ . '/../tmp/contents/no-view/no-view.md');
+        $document = MarkdownDocument::fromContent($content);
+
+        $this->assertEquals('nothing', $document->getTemplateName());
+    }
 }
