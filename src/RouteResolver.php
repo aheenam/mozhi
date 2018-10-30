@@ -28,7 +28,7 @@ class RouteResolver
             return null;
         }
 
-        return new MarkdownDocument($content);
+        return MarkdownDocument::fromContent($content);
     }
 
     private function getFilePath(string $route): string
