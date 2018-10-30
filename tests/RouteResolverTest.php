@@ -2,9 +2,9 @@
 
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Support\Facades\Storage;
+use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class RouteResolverTest extends TestCase
