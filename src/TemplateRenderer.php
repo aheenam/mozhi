@@ -22,14 +22,20 @@ class TemplateRenderer
      */
     protected $template;
 
-    public function __construct(Document $page)
+    /**
+     * @var string
+     */
+    private $themeName;
+
+    public function __construct(Document $page, string $themeName)
     {
         $this->page = $page;
+        $this->themeName = $themeName;
     }
 
     public function render(array $data = []): string
     {
-        $currentTheme = self::getCurrentTheme();
+        $currentTheme = $this->themeName;
         $template = $this->page->getTemplateName();
 
         if (! view()->exists("theme::$currentTheme.$template")) {
@@ -47,6 +53,6 @@ class TemplateRenderer
      */
     public static function getCurrentTheme()
     {
-        return config('mozhi.theme');
+        return ;
     }
 }

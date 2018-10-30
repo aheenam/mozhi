@@ -13,14 +13,6 @@ class TemplateRendererTest extends TestCase
     use MatchesSnapshots;
 
     /** @test */
-    public function it_returns_current_theme()
-    {
-        $theme = TemplateRenderer::getCurrentTheme();
-
-        $this->assertEquals('default', $theme);
-    }
-
-    /** @test */
     public function it_throws_an_exception_if_view_does_not_exists()
     {
         $this->expectException(TemplateNotFoundException::class);
@@ -28,7 +20,7 @@ class TemplateRendererTest extends TestCase
         $page = (new RouteResolver(Storage::disk('content')))
             ->getPageByRoute('/no-view');
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
     }
 
     /** @test */
@@ -37,7 +29,7 @@ class TemplateRendererTest extends TestCase
         $page = (new RouteResolver(Storage::disk('content')))
             ->getPageByRoute('/no-template');
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
     }
 
     /** @test */
@@ -46,6 +38,6 @@ class TemplateRendererTest extends TestCase
         $page = (new RouteResolver(Storage::disk('content')))
             ->getPageByRoute('/table');
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($page, 'default'))->render());
     }
 }
