@@ -2,7 +2,7 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\Documents\Page;
+use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRenderer
@@ -10,7 +10,7 @@ class TemplateRenderer
     /**
      * the page that the TemplateRenderer should render.
      *
-     * @var Page
+     * @var MarkdownDocument
      */
     protected $page;
 
@@ -25,9 +25,9 @@ class TemplateRenderer
     /**
      * TemplateRenderer constructor.
      *
-     * @param Page $page
+     * @param MarkdownDocument $page
      */
-    public function __construct(Page $page)
+    public function __construct(MarkdownDocument $page)
     {
         $this->page = $page;
     }

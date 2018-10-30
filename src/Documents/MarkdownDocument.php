@@ -5,7 +5,7 @@ namespace Aheenam\Mozhi\Documents;
 use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-class Page
+class MarkdownDocument
 {
     /**
      * the meta data of the page.
