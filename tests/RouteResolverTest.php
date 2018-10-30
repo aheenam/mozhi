@@ -2,9 +2,9 @@
 
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\Models\Page;
 use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Support\Facades\Storage;
+use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class RouteResolverTest extends TestCase
@@ -35,7 +35,7 @@ class RouteResolverTest extends TestCase
         $page = $this->routeResolver->getPageByRoute('/blog/awesome-blog');
 
         $this->assertNotNull($page);
-        $this->assertInstanceOf(Page::class, $page);
+        $this->assertInstanceOf(MarkdownDocument::class, $page);
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class RouteResolverTest extends TestCase
         $page = $this->routeResolver->getPageByRoute('/');
 
         $this->assertNotNull($page);
-        $this->assertInstanceOf(Page::class, $page);
+        $this->assertInstanceOf(MarkdownDocument::class, $page);
     }
 
     /** @test */

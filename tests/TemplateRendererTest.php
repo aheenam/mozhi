@@ -21,28 +21,6 @@ class TemplateRendererTest extends TestCase
     }
 
     /** @test */
-    public function it_uses_the_correct_template_of_a_page()
-    {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/blog/awesome-blog');
-
-        $template = (new TemplateRenderer($page))->getTemplate();
-
-        $this->assertEquals('blog', $template);
-    }
-
-    /** @test */
-    public function it_returns_default_if_no_template_is_defined()
-    {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/no-template');
-
-        $template = (new TemplateRenderer($page))->getTemplate();
-
-        $this->assertEquals('page', $template);
-    }
-
-    /** @test */
     public function it_throws_an_exception_if_view_does_not_exists()
     {
         $this->expectException(TemplateNotFoundException::class);
