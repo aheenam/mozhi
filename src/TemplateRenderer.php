@@ -22,26 +22,12 @@ class TemplateRenderer
      */
     protected $template;
 
-    /**
-     * TemplateRenderer constructor.
-     *
-     * @param Document $page
-     */
     public function __construct(Document $page)
     {
         $this->page = $page;
     }
 
-    /**
-     * returns a rendered string.
-     *
-     * @param array $data
-     *
-     * @throws TemplateNotFoundException
-     *
-     * @return string
-     */
-    public function render($data = [])
+    public function render(array $data = []): string
     {
         $currentTheme = self::getCurrentTheme();
         $template = $this->page->getTemplateName();
