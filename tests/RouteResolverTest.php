@@ -2,7 +2,7 @@
 
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\Models\Page;
+use Aheenam\Mozhi\Documents\Page;
 use Aheenam\Mozhi\RouteResolver;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Filesystem\Filesystem;

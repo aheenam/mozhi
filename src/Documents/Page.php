@@ -1,6 +1,6 @@
 <?php
 
-namespace Aheenam\Mozhi\Models;
+namespace Aheenam\Mozhi\Documents;
 
 use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;

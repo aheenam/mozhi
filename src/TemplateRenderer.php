@@ -2,7 +2,7 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\Models\Page;
+use Aheenam\Mozhi\Documents\Page;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRenderer
