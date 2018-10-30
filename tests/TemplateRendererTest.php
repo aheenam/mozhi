@@ -22,9 +22,7 @@ class TemplateRendererTest extends TestCase
             file_get_contents(__DIR__ . '/tmp/contents/no-view/no-view.md')
         );
 
-        $rendered = (new TemplateRenderer($document, 'default'))->render();
-
-        $this->assertMatchesSnapshot($rendered);
+        (new TemplateRenderer($document, 'default'))->render();
     }
 
     /** @test */
