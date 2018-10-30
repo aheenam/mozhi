@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RequestHandler extends Controller
 {
-    public function __invoke(string $slug = 'index'): Response
+    public function __invoke(string $slug = '/'): Response
     {
         $contentStorage = Storage::disk(config('mozhi.content_disk'));
         $page = (new RouteResolver($contentStorage))->getPageByRoute($slug);

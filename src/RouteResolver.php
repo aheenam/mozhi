@@ -19,18 +19,9 @@ class RouteResolver
         $this->contentStorage = $contentStorage;
     }
 
-    /**
-     * @param string $route
-     *
-     * @return null
-     */
-    public function getPageByRoute($route = null)
+    public function getPageByRoute(string $route): ?Page
     {
-        $filePath = 'contents/'.$route.'.md';
-
-        if ($route === null) {
-            return null;
-        }
+        $filePath = $this->getFilePath($route);
 
         try {
             $content = $this->contentStorage->get($filePath);
@@ -39,5 +30,15 @@ class RouteResolver
         }
 
         return new Page($content);
+    }
+
+    private function getFilePath(string $route): string
+    {
+        if ($route === '/') {
+            return 'contents/index.md';
+        }
+        $fileName = collect(explode('/', $route))->pop() . '.md';
+
+        return 'contents/' . $route . '/' . $fileName;
     }
 }

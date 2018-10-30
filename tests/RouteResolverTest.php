@@ -31,8 +31,18 @@ class RouteResolverTest extends TestCase
     /** @test */
     public function it_returns_a_page_by_route()
     {
-        $this->storage->put('contents/blog/awesome-blog.md', 'test');
+        $this->storage->put('contents/blog/awesome-blog/awesome-blog.md', 'test');
         $page = $this->routeResolver->getPageByRoute('/blog/awesome-blog');
+
+        $this->assertNotNull($page);
+        $this->assertInstanceOf(Page::class, $page);
+    }
+
+    /** @test */
+    public function it_returns_a_home_page_by_route()
+    {
+        $this->storage->put('contents/index.md', 'test');
+        $page = $this->routeResolver->getPageByRoute('/');
 
         $this->assertNotNull($page);
         $this->assertInstanceOf(Page::class, $page);
