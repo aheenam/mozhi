@@ -2,11 +2,23 @@
 
 namespace Aheenam\Mozhi;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Storage;
 use Aheenam\Mozhi\Models\Page;
 
 class RouteResolver
 {
+    /**
+     * @var Filesystem
+     */
+    private $contentStorage;
+
+    public function __construct(Filesystem $contentStorage)
+    {
+        $this->contentStorage = $contentStorage;
+    }
+
     /**
      * @param string $route
      *
@@ -14,14 +26,17 @@ class RouteResolver
      */
     public function getPageByRoute($route = null)
     {
-        $contentStorage = Storage::disk(config('mozhi.content_disk'));
         $filePath = 'contents/'.$route.'.md';
 
-        if ($route === null || ! $contentStorage->exists($filePath)) {
-            return;
+        if ($route === null) {
+            return null;
         }
 
-        $content = $contentStorage->get($filePath);
+        try {
+            $content = $this->contentStorage->get($filePath);
+        } catch (FileNotFoundException $e) {
+            return null;
+        }
 
         return new Page($content);
     }
