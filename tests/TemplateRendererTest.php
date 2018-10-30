@@ -4,8 +4,8 @@ namespace Aheenam\Mozhi\Test;
 
 use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Snapshots\MatchesSnapshots;
+use Illuminate\Support\Facades\Storage;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase

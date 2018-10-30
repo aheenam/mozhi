@@ -4,8 +4,8 @@ namespace Aheenam\Mozhi\Test;
 
 use Aheenam\Mozhi\Models\Page;
 use Aheenam\Mozhi\RouteResolver;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class RouteResolverTest extends TestCase
 {

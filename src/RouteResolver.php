@@ -2,10 +2,9 @@
 
 namespace Aheenam\Mozhi;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Storage;
 use Aheenam\Mozhi\Models\Page;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class RouteResolver
 {
@@ -37,8 +36,8 @@ class RouteResolver
         if ($route === '/') {
             return 'contents/index.md';
         }
-        $fileName = collect(explode('/', $route))->pop() . '.md';
+        $fileName = collect(explode('/', $route))->pop().'.md';
 
-        return 'contents/' . $route . '/' . $fileName;
+        return 'contents/'.$route.'/'.$fileName;
     }
 }
