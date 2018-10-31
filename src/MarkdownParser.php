@@ -6,7 +6,7 @@ use League\CommonMark\Environment;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\ExtensionInterface;
 
-class MarkdownParser
+class MarkdownParser implements \Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownParser
 {
     /**
      * @var Environment
