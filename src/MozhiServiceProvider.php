@@ -2,7 +2,11 @@
 
 namespace Aheenam\Mozhi;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Container\Container;
+use Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownParser;
+use Aheenam\Mozhi\Documents\MarkdownDocument\CommonmarkParser;
 
 class MozhiServiceProvider extends ServiceProvider
 {
@@ -36,6 +40,16 @@ class MozhiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(CommonmarkParser::class, function ($app) {
+            $extensions = collect(Config::get('mozhi.markdown_extensions', []));
+
+            return new CommonmarkParser($extensions);
+        });
+
+        $this->app->bind(MarkdownParser::class, function (Container $app) {
+            return $app->get(CommonmarkParser::class);
+        });
+
         $this->mergeConfigFrom(__DIR__.'/../config/mozhi.php', 'mozhi');
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace Aheenam\Mozhi;
+namespace Aheenam\Mozhi\Documents\MarkdownDocument;
 
+use Illuminate\Support\Collection;
 use League\CommonMark\Environment;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\ExtensionInterface;
 
-class MarkdownParser
+class CommonmarkParser implements MarkdownParser
 {
     /**
      * @var Environment
@@ -18,13 +19,11 @@ class MarkdownParser
      */
     protected $converter;
 
-    public function __construct()
+    public function __construct(Collection $extensions)
     {
         $this->environment = Environment::createCommonMarkEnvironment();
 
         $config = [];
-
-        $extensions = collect(config('mozhi.markdown_extensions', []));
 
         $extensions->each(function ($extension) {
             $this->environment->addExtension($extension);
