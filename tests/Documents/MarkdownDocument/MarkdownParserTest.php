@@ -1,9 +1,10 @@
 <?php
 
-namespace Aheenam\Mozhi\Test;
+namespace Aheenam\Mozhi\Test\Documents\MarkdownDocument;
 
 
 use Aheenam\Mozhi\Documents\MarkdownDocument\CommonmarkParser;
+use Orchestra\Testbench\TestCase;
 
 class MarkdownParserTest extends TestCase
 {
