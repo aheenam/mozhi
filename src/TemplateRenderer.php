@@ -12,7 +12,7 @@ class TemplateRenderer
      *
      * @var Document
      */
-    protected $page;
+    protected $document;
 
     /**
      * The name of the template file that should
@@ -32,22 +32,22 @@ class TemplateRenderer
      */
     private $viewPath;
 
-    public function __construct(Document $page, string $themeName)
+    public function __construct(Document $document, string $themeName)
     {
-        $this->page = $page;
+        $this->document = $document;
         $this->themeName = $themeName;
-        $this->viewPath = "theme::{$this->themeName}.{$this->page->getTemplateName()}";
+        $this->viewPath = "theme::{$this->themeName}.{$this->document->getTemplateName()}";
     }
 
     public function render(array $data = []): string
     {
         try {
             return view($this->viewPath, collect([
-                'meta' => $this->page->getMetaData(),
-                'content' => $this->page->getHtmlContent(),
+                'meta' => $this->document->getMetaData(),
+                'content' => $this->document->getHtmlContent(),
             ])->concat(collect($data)))->render();
         } catch (\Throwable $e) {
-            throw TemplateNotFoundException::forTemplateInTheme($this->page->getTemplateName(), $this->themeName);
+            throw TemplateNotFoundException::forTemplateInTheme($this->document->getTemplateName(), $this->themeName);
         }
     }
 }
