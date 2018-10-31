@@ -3,7 +3,6 @@
 namespace Aheenam\Mozhi\Documents\MarkdownDocument;
 
 use Aheenam\Mozhi\Documents\Document;
-use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class MarkdownDocument implements Document
@@ -28,12 +27,16 @@ class MarkdownDocument implements Document
      */
     private $templateName;
 
-    public function __construct(string $content, array $metaData, string $templateName)
-    {
+    public function __construct(
+        string $content,
+        array $metaData,
+        string $templateName,
+        MarkdownParser $markdownParser
+    ) {
         $this->content = $content;
         $this->metaData = $metaData;
         $this->templateName = $templateName;
-        $this->markdownParser = new MarkdownParser();
+        $this->markdownParser = $markdownParser;
     }
 
     public static function fromContent(string $content): self
@@ -41,7 +44,12 @@ class MarkdownDocument implements Document
         $content = YamlFrontMatter::parse($content);
         $templateName = $content->matter('template', config('mozhi.default_template'));
 
-        return new self($content->body(), $content->matter(), $templateName);
+        return new self(
+            $content->body(),
+            $content->matter(),
+            $templateName,
+            app()->get(MarkdownParser::class)
+        );
     }
 
     public function getRawContent(): string
