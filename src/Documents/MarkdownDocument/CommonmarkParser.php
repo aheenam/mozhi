@@ -1,12 +1,12 @@
 <?php
 
-namespace Aheenam\Mozhi;
+namespace Aheenam\Mozhi\Documents\MarkdownDocument;
 
 use League\CommonMark\Environment;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Extension\ExtensionInterface;
 
-class MarkdownParser implements \Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownParser
+class CommonmarkParser implements MarkdownParser
 {
     /**
      * @var Environment
