@@ -47,8 +47,7 @@ class TemplateRenderer
                 'content' => $this->page->getHtmlContent(),
             ])->concat(collect($data)))->render();
         } catch (\Throwable $e) {
-            throw new TemplateNotFoundException(
-                "Template [{$this->page->getTemplateName()}] was not found in theme [$this->themeName]");
+            throw TemplateNotFoundException::forTemplateInTheme($this->page->getTemplateName(), $this->themeName);
         }
     }
 }
