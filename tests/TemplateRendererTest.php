@@ -2,10 +2,9 @@
 
 namespace Aheenam\Mozhi\Test;
 
-use Aheenam\Mozhi\RouteResolver;
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
-use Illuminate\Support\Facades\Storage;
+use Aheenam\Mozhi\Documents\MarkdownDocument;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase
@@ -13,39 +12,34 @@ class TemplateRendererTest extends TestCase
     use MatchesSnapshots;
 
     /** @test */
-    public function it_returns_current_theme()
-    {
-        $theme = TemplateRenderer::getCurrentTheme();
-
-        $this->assertEquals('default', $theme);
-    }
-
-    /** @test */
     public function it_throws_an_exception_if_view_does_not_exists()
     {
         $this->expectException(TemplateNotFoundException::class);
 
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/no-view');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__.'/tmp/contents/no-view/no-view.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        (new TemplateRenderer($document, 'default'))->render();
     }
 
     /** @test */
     public function it_renders_a_page_view()
     {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/no-template');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__.'/tmp/contents/no-template/no-template.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($document, 'default'))->render());
     }
 
     /** @test */
     public function it_renders_a_view_with_a_table()
     {
-        $page = (new RouteResolver(Storage::disk('content')))
-            ->getPageByRoute('/table');
+        $document = MarkdownDocument::fromContent(
+            file_get_contents(__DIR__.'/tmp/contents/table/table.md')
+        );
 
-        $this->assertMatchesSnapshot((new TemplateRenderer($page))->render());
+        $this->assertMatchesSnapshot((new TemplateRenderer($document, 'default'))->render());
     }
 }

@@ -8,45 +8,36 @@ use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 class TemplateRenderer
 {
     /**
-     * the page that the TemplateRenderer should render.
-     *
      * @var Document
      */
-    protected $page;
+    protected $document;
 
     /**
-     * The name of the template file that should
-     * be used for the page.
-     *
      * @var string
      */
-    protected $template;
+    private $themeName;
 
-    public function __construct(Document $page)
+    /**
+     * @var string
+     */
+    private $viewPath;
+
+    public function __construct(Document $document, string $themeName)
     {
-        $this->page = $page;
+        $this->document = $document;
+        $this->themeName = $themeName;
+        $this->viewPath = "theme::{$this->themeName}.{$this->document->getTemplateName()}";
     }
 
     public function render(array $data = []): string
     {
-        $currentTheme = self::getCurrentTheme();
-        $template = $this->page->getTemplateName();
-
-        if (! view()->exists("theme::$currentTheme.$template")) {
-            throw new TemplateNotFoundException("Template [$template] was not found in theme [$currentTheme]");
+        try {
+            return view($this->viewPath, collect([
+                'meta' => $this->document->getMetaData(),
+                'content' => $this->document->getHtmlContent(),
+            ])->concat(collect($data)))->render();
+        } catch (\Throwable $e) {
+            throw TemplateNotFoundException::forTemplateInTheme($this->document->getTemplateName(), $this->themeName);
         }
-
-        return view("theme::$currentTheme.$template", collect([
-            'meta'    => $this->page->getMetaData(),
-            'content' => $this->page->getHtmlContent(),
-        ])->concat(collect($data)))->render();
-    }
-
-    /**
-     * @return \Illuminate\Config\Repository|mixed
-     */
-    public static function getCurrentTheme()
-    {
-        return config('mozhi.theme');
     }
 }

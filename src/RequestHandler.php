@@ -12,13 +12,14 @@ class RequestHandler extends Controller
     public function __invoke(string $slug = '/'): Response
     {
         $contentStorage = Storage::disk(config('mozhi.content_disk'));
+        $currentTheme = config('mozhi.theme');
         $page = (new RouteResolver($contentStorage))->getPageByRoute($slug);
 
         if ($page === null) {
             throw new NotFoundHttpException();
         }
         try {
-            $view = (new TemplateRenderer($page))->render([]);
+            $view = (new TemplateRenderer($page, $currentTheme))->render([]);
         } catch (Exceptions\TemplateNotFoundException $e) {
             throw new NotFoundHttpException();
         }

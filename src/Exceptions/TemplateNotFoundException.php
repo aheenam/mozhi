@@ -2,12 +2,10 @@
 
 namespace Aheenam\Mozhi\Exceptions;
 
-use Throwable;
-
-class TemplateNotFoundException extends \Exception
+class TemplateNotFoundException extends \RuntimeException
 {
-    public function __construct($message = '', $code = 0, Throwable $previous = null)
+    public static function forTemplateInTheme(string $template, string $theme): self
     {
-        parent::__construct($message, $code, $previous);
+        return new self("Template [$template] was not found in theme [$theme]");
     }
 }
