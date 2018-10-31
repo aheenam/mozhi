@@ -4,7 +4,7 @@ namespace Aheenam\Mozhi\Test;
 
 use Aheenam\Mozhi\TemplateRenderer;
 use Spatie\Snapshots\MatchesSnapshots;
-use Aheenam\Mozhi\Documents\MarkdownDocument;
+use Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownDocument;
 use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 
 class TemplateRendererTest extends TestCase

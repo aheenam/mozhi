@@ -4,7 +4,7 @@ namespace Aheenam\Mozhi\Test\Documents;
 
 use Aheenam\Mozhi\Test\TestCase;
 use Illuminate\Support\Facades\Config;
-use Aheenam\Mozhi\Documents\MarkdownDocument;
+use Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownDocument;
 
 class MarkdownDocumentTest extends TestCase
 {

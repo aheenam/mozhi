@@ -1,7 +1,8 @@
 <?php
 
-namespace Aheenam\Mozhi\Documents;
+namespace Aheenam\Mozhi\Documents\MarkdownDocument;
 
+use Aheenam\Mozhi\Documents\Document;
 use Aheenam\Mozhi\MarkdownParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 

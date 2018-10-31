@@ -2,7 +2,7 @@
 
 namespace Aheenam\Mozhi;
 
-use Aheenam\Mozhi\Documents\MarkdownDocument;
+use Aheenam\Mozhi\Documents\MarkdownDocument\MarkdownDocument;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
