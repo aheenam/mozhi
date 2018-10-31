@@ -2,9 +2,8 @@
 
 namespace Aheenam\Mozhi\Test\Documents\MarkdownDocument;
 
-
-use Aheenam\Mozhi\Documents\MarkdownDocument\CommonmarkParser;
 use Orchestra\Testbench\TestCase;
+use Aheenam\Mozhi\Documents\MarkdownDocument\CommonmarkParser;
 
 class MarkdownParserTest extends TestCase
 {
