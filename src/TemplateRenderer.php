@@ -8,19 +8,9 @@ use Aheenam\Mozhi\Exceptions\TemplateNotFoundException;
 class TemplateRenderer
 {
     /**
-     * the page that the TemplateRenderer should render.
-     *
      * @var Document
      */
     protected $document;
-
-    /**
-     * The name of the template file that should
-     * be used for the page.
-     *
-     * @var string
-     */
-    protected $template;
 
     /**
      * @var string
