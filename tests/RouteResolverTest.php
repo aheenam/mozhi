@@ -19,7 +19,7 @@ class RouteResolverTest extends TestCase
      */
     private $routeResolver;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Storage::fake('test_content');
