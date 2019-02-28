@@ -3,7 +3,7 @@ CHANGELOG
 
 This changelog contains all notable change of the mozhi package
 
-0.4.0
+0.5.0
 ---
 - drops support for Laravel 5.6
 - adds Laravel 5.8 support
@@ -13,6 +13,11 @@ This changelog contains all notable change of the mozhi package
 ### Breaking changes
 
 - The Route Resolver has been modified. Every page has to live in its own directory now. The URL `/blog` should have a `contents/blog/blog.md` while previously `contents/blog.md` was enough. (https://github.com/aheenam/mozhi/pull/18)
+
+0.4.0
+---
+
+This version adds support to Laravel 5.7 and drops support for Laravel 5.5
 
 0.3.0
 ---
