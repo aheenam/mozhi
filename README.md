@@ -13,18 +13,6 @@ You can install the package via composer:
 composer require aheenam/mozhi
 ```
 
-If you are using Laravel in a version < 5.5, the service provider must be registered as a next step:
-
-```php
-<?php
-
-// config/app.php
-'providers' => [
-    ...
-    Aheenam\Mozhi\MozhiServiceProvider::class
-];
-```
-
 Configuration
 ---
 
