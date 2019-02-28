@@ -3,6 +3,17 @@ CHANGELOG
 
 This changelog contains all notable change of the mozhi package
 
+0.4.0
+---
+- drops support for Laravel 5.6
+- adds Laravel 5.8 support
+- Refactoring of the template renderer
+- Inject a markdown parser, this way it can now be swapped out
+
+### Breaking changes
+
+- The Route Resolver has been modified. Every page has to live in its own directory now. The URL `/blog` should have a `contents/blog/blog.md` while previously `contents/blog.md` was enough. (https://github.com/aheenam/mozhi/pull/18)
+
 0.3.0
 ---
 - adds support for Laravel 5.6

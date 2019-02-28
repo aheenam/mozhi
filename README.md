@@ -5,24 +5,16 @@ Mozhi
 
 The package provides a simple way to add a static files based CMS to your Laravel project. It uses Markdown files as the content provider and uses Laravel's Blade for templating.
 
+## Requirements
+
+This package requires `PHP 7.2` and a Laravel version `>= 5.7`.
+
 Installation
 ---
 You can install the package via composer:
 
 ```bash
 composer require aheenam/mozhi
-```
-
-If you are using Laravel in a version < 5.5, the service provider must be registered as a next step:
-
-```php
-<?php
-
-// config/app.php
-'providers' => [
-    ...
-    Aheenam\Mozhi\MozhiServiceProvider::class
-];
 ```
 
 Configuration
